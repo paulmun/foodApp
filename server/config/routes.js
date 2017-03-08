@@ -11,7 +11,7 @@
             userController.all(req, res);
         });
         app.get('/users/:id', function(req, res){
-            userController.user(req, res);
+            userController.show(req, res);
         });
         app.post('/users', function(req, res){
             userController.create(req, res);
