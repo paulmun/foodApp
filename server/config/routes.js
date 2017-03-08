@@ -10,16 +10,16 @@
         app.get('/users', function(req, res){
             userController.all(req, res);
         });
-        app.get('/users/:id', function(req, res){
+        app.get('/user/:id', function(req, res){
             userController.show(req, res);
         });
-        app.post('/users', function(req, res){
+        app.post('/user', function(req, res){
             userController.create(req, res);
         });
-        app.put('/users/:id', function(req, res){
+        app.put('/user/:id', function(req, res){
             userController.update(req,res);
         });
-        app.delete('/users/:id', function(req, res){
+        app.delete('/user/:id', function(req, res){
             userController.destroy(req, res);
         });
 
@@ -49,17 +49,30 @@
             serviceReviewController.destroy(req, res);
         });
 
-        app.get('/restaurants/:id', function(req, res){
+        app.get('/restaurant/:id', function(req, res){
             restaurantController.restaurant(req, res);
         });
-        app.post('/restaurants', function(req, res){
+        app.post('/restaurant', function(req, res){
             restaurantController.create(req, res);
         });
-        app.put('/restaurants/:id', function(req, res){
+        app.put('/restaurant/:id', function(req, res){
             restaurantController.update(req, res);
         });
-        app.delete('/restaurants/:id', function(req, res){
+        app.delete('/restaurant/:id', function(req, res){
             restaurantController.destroy(req,res);
         });
+
+        app.get('/dish/:id', function(req, res){
+            dishController.dish(req, res);
+        });
+        app.post('/dish', function(req, res){
+            dishController.create(req, res);
+        });
+        app.put('/dish/:id' function(req, res){
+            dishController.update(req, res);
+        });
+        app.delete('/restaurant/:id', function(req, res){
+            dishController.destroy(req, res);
+        })
     }
 })();
