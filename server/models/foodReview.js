@@ -6,7 +6,8 @@
     var FoodReviewSchema = new Schema({
         user: {
             type: Schema.types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            required: true
         },
 
         review: {
@@ -15,19 +16,20 @@
         },
 
         rating: {
-            type: Number
+            type: Number,
+            required: true
         },
 
         dishes: [{
             type: Schema.Types.ObjectId,
-            ref: 'Dish'            
+            ref: 'Dish'
         }],
 
         restaurant: {
-            type: String,
-            required: true,
-            trim: true
-        },
+            type: Schema.Types.objectId,
+            ref: 'Restaurant',
+            required: true
+        }
     });
 
     mongoose.model('FoodReview', FoodReviewSchema);
