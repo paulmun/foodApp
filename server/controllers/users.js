@@ -31,7 +31,6 @@
             user.save(function(err, data){
                 if (err && err.errors.email.kind == 'user defined') {
                     User.findOne({email: req.body.email}, function(err, user){
-                            console.log(user);
                             if(err)res.json(err);
                             else{
                             res.json(user);
@@ -39,7 +38,6 @@
                         }
                     );
                 } else if(err){
-                    console.log(err);
                     res.json(err);
                 } else{
                     res.json(data);
@@ -84,7 +82,7 @@
                 }
             });
         }
-        
+
     }
 
     module.exports = new userController();
