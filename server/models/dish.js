@@ -4,22 +4,21 @@
         Schema = mongoose.Schema;
 
     var DishSchema = new Schema({
+        name: {
+            type: String,
+            required: true
+        },
+        
         restaurant: {
             type: Schema.types.ObjectId,
             ref: 'Restaurant',
             required: true
         },
 
-        category: {
+        category: [{
             type: String,
             trim: true,
-            required: true
-        },
-
-        genre: {
-            type: String,
-            trim: true
-        },
+        }],
 
         rating: {
             type: Number,
