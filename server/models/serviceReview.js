@@ -7,7 +7,7 @@
         user: {
             type: Schema.types.ObjectId,
             ref: 'User',
-            rquired: true;
+            required: true
         },
 
         ambience: {

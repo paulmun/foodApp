@@ -3,10 +3,11 @@
     var mongoose = require('mongoose'),
         Schema = mongoose.Schema;
 
-    var ServiceReviewSchema = new Schema({
+    var RestaurantSchema = new Schema({
         owner: {
             type: Schema.types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            required: true
         },
 
         name: {
@@ -51,6 +52,6 @@
 
     });
 
-    mongoose.model('ServiceReview', ServiceReviewSchema);
+    mongoose.model('Restaurant', RestaurantSchema);
 
 })();
