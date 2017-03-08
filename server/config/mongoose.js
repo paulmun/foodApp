@@ -5,7 +5,7 @@
         path = require('path'),
         models_path = path.join(__dirname, '../models'),
         reg = new RegExp(".js$", "i"),
-        dbURI = ('mongodb://localhost/mainDB');
+        dbURI = ('mongodb://localhost/foodApp');
 
     mongoose.connect(dbURI);
 

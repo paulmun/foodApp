@@ -4,6 +4,14 @@
         Schema = mongoose.Schema;
 
     var UserSchema = new Schema({
+        email: {
+            type: String,
+            trim: true
+            unique: true,
+            uniqueCaseInsensitive: true,
+            required: true
+        },
+
         name: {
             type: String,
             trim: true,
@@ -31,7 +39,6 @@
             type: Schema.types.ObjectId,
             ref: 'ServiceReview'
         }]
-
 
     });
 
