@@ -8,6 +8,11 @@
             type: String,
             required: true
         },
+
+        nameLower: {
+            type: String,
+            required: true
+        },
         
         restaurant: {
             type: Schema.types.ObjectId,

@@ -13,29 +13,39 @@
                     res.json(dish);
                 }
             });
-        }        
+        }
 
         this.create = function(req, res){
-            var dish = new Dish({
-                restaurant: req.body.restaurant,
-                category: req.body.category,
-                rating: req.body.rating,
-                price: req.body.price
-            });
-
-            dish.save(function(err, data){
-                if (err && err.errors.email.kind == 'dish defined') {
-                    Dish.findOne({email: req.body.email}, function(err, dish){
-                            if(err)res.json(err);
-                            else{
-                            res.json(dish);
-                            }
-                        }
-                    );
-                } else if(err){
+            var dishes = Dish.find({restaurant: req.body.restaurant}, function(err, dishes){
+                if (err) {
                     res.json(err);
-                } else{
-                    res.json(data);
+                } else {
+                    for (var i = 0; i < dishes.length; i++) {
+                        if (req.body.name.toLowerCase() === dishes[i].nameLower) {
+                            res.json(dishes[i]);
+                        }
+
+                        break;
+                    }
+
+                    if (i === dishes.length) {
+                        var dish = new Dish({
+                            name: req.body.name,
+                            nameLower: req.body.name.toLowerCase();
+                            restaurant: req.body.restaurant,
+                            category: req.body.category,
+                            rating: req.body.rating,
+                            price: req.body.price
+                        });
+
+                        dish.save(function(err, dish){
+                            if (err) {
+                                res.json(err);
+                            } else{
+                                res.json(dish);
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -51,14 +61,13 @@
 
             rating = (Math.round(rating/reviewCount*10)/10).toFixed(1);
 
-
-
             var dish = Dish.findOne({_id: req.params.id}, function(err, dish){
                 if (err) {
                     res.json(err);
                 } else{
                     if (req.body.name && dish.name !== req.body.name) {
                         dish.name = req.body.name;
+                        dish.nameLower = req.body.name.toLowerCase();
                     }
                     if (req.body.restaurant && dish.restaurant !== req.body.restaurant) {
                         dish.restaurant = req.body.restaurant;
