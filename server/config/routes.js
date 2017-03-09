@@ -24,7 +24,7 @@
         });
 
         app.get('/reviews/food/:id', function(req, res){
-            foodReviewController.foodReview(req, res);
+            foodReviewController.show(req, res);
         });
         app.post('/reviews/food', function(req, res){
             foodReviewController.create(req, res);
@@ -37,7 +37,7 @@
         });
 
         app.get('/reviews/service/:id', function(req, res){
-            serviceReviewController.serviceReview(req, res);
+            serviceReviewController.show(req, res);
         });
         app.post('/reviews/service', function(req, res){
             serviceReviewController.create(req, res);
@@ -50,7 +50,7 @@
         });
 
         app.get('/restaurant/:id', function(req, res){
-            restaurantController.restaurant(req, res);
+            restaurantController.show(req, res);
         });
         app.post('/restaurant', function(req, res){
             restaurantController.create(req, res);
@@ -63,7 +63,7 @@
         });
 
         app.get('/dish/:id', function(req, res){
-            dishController.dish(req, res);
+            dishController.show(req, res);
         });
         app.post('/dish', function(req, res){
             dishController.create(req, res);
