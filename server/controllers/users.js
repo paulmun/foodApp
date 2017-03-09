@@ -9,7 +9,7 @@
                 if (err) {
                     res.json(err);
                 }
-                res.json(topics);
+                res.json(users);
             });
         }
 
