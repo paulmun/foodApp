@@ -32,6 +32,16 @@
 
         price: {
             type: Number
+        },
+
+        reviews: [{
+            type: Schema.types.ObjectId,
+            ref: 'FoodReview'
+        }],
+
+        totalScore: {
+            type: Number,
+            default: 0
         }
     });
 
