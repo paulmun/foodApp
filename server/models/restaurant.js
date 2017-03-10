@@ -32,20 +32,32 @@
 
         foodRating: {
             type: Number,
-            default: 0,
-            totRatings: {
-                type: Number
-                default: 0
-            }
+            default: 0
         },
 
         serviceRating: {
             type: Number,
-            default: 0,
-            totRatings: {
-                type: Number
-                default: 0
-            }
+            default: 0
+        },
+
+        dishes: [{
+            type: Schema.types.ObjectId,
+            ref: 'Dish'
+        }],
+
+        serviceReviews: [{
+            type: Schema.types.objectId,
+            ref: 'ServiceReview'
+        }],
+
+        foodTot: {
+            type: Number,
+            default: 0
+        },
+
+        serviceTot: {
+            type: Number,
+            default: 0
         }
 
     });
