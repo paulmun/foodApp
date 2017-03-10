@@ -6,8 +6,7 @@
     var RestaurantSchema = new Schema({
         owner: {
             type: Schema.types.ObjectId,
-            ref: 'User',
-            required: true
+            ref: 'User'
         },
 
         name: {
@@ -16,15 +15,14 @@
             required: true
         },
 
-        loc: {
-            x: {
-                type: Number,
-                required: true
-            },
-            y: {
-                type: Number,
-                required: true
-            }
+        locx: {
+            type: Number,
+            required: true
+        },
+
+        locy: {
+            type: Number,
+            required: true
         },
 
         rating: {
