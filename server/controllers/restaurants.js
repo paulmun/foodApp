@@ -26,21 +26,33 @@
         this.create = function(req, res){
             var restaurant = new Restaurant({
                 name: req.body.name,
-                email: req.body.email
+                locx: req.body.lat,
+                locy: req.body.long
             });
-            restaurant.save(function(err, data){
-                if (err && err.errors.email.kind == 'restaurant defined') {
-                    Restaurant.findOne({email: req.body.email}, function(err, restaurant){
-                            if(err)res.json(err);
-                            else{
-                            res.json(restaurant);
+
+            Restaurant.find({locx: req.body.lat, locy: req.body.long}, function(err, rest) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (rest.length > 0) {
+                        res.json(rest);
+                    } else {
+                        restaurant.save(function(err, data){
+                            if (err && err.errors.loc) {
+                                Restaurant.findOne({loc: {x: req.body.lat, y: req.body.long}}, function(err, restaurant){
+                                        if(err)res.json(err);
+                                        else{
+                                        res.json(restaurant);
+                                        }
+                                    }
+                                );
+                            } else if(err){
+                                res.json(err);
+                            } else{
+                                res.json(data);
                             }
-                        }
-                    );
-                } else if(err){
-                    res.json(err);
-                } else{
-                    res.json(data);
+                        });
+                    }
                 }
             });
         }
@@ -50,17 +62,17 @@
                 if (err) {
                     res.json(err);
                 } else{
+                    if (restaurant.owner !== req.body.owner) {
+                        restaurant.owner = req.body.owner;
+                    }
                     if (restaurant.name !== req.body.name) {
                         restaurant.name = req.body.name;
                     }
-                    if (restaurant.email !== req.body.email) {
-                        restaurant.email = req.body.email;
+                    if (restaurant.locx !== req.body.lat) {
+                        restaurant.locx = req.body.late;
                     }
-                    if (restaurant.bio !== req.body.bio) {
-                        restaurant.bio = req.body.bio;
-                    }
-                    if (restaurant.location !== req.body.location) {
-                        restaurant.location = req.body.location;
+                    if (restaurant.locy !== req.body.long) {
+                        restaurant.locy = req.body.long;
                     }
 
                     restaurant.save(function(err, data){
