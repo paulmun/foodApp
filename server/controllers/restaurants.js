@@ -1,4 +1,5 @@
 (function(){
+    
     var mongoose = require('mongoose'),
         Restaurant = mongoose.model('Restaurant');
 
@@ -88,7 +89,9 @@
 
         this.destroy = function(req, res){
             Restaurant.findByIdAndRemove(req.params.id, function(err){
-                if(err)res.json(err);
+                if (err) {
+                    res.json(err);
+                }
                 else{
                     res.json(true);
                 }
