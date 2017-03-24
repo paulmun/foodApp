@@ -10,10 +10,6 @@
             required: true
         },
 
-        ambience: {
-            type: String
-        },
-
         title: {
             type: String,
             trim: true,
